@@ -1,0 +1,60 @@
+#!/bin/sh
+
+# Warning, problems can occur if the device restarts in the middle of this uci-default script
+
+if [ -x /usr/bin/sysrepoctl ]; then
+	match=$(sysrepoctl -l | grep "terastream-software ")
+	if [ ! "$match" ]; then
+		sysrepoctl -i /etc/sysrepo/yang/terastream-software@2017-11-01.yang
+		sysrepoctl -c terastream-software -e software-credentials-password
+
+		export save_file="/etc/sysrepo/sysupgrade/ietf-system.startup
+		                  /etc/sysrepo/sysupgrade/ietf-keystore.startup
+		                  /etc/sysrepo/sysupgrade/cksum"
+		for file in $save_file
+		do
+			if grep /etc/sysupgrade.conf -e "$file" ; then
+				echo "$file already in file /etc/sysupgrade.conf"
+			else
+				echo "$file" >> /etc/sysupgrade.conf
+			fi
+		done
+
+		if [ -x /usr/bin/sysrepocfg ]; then
+			if [ -f "/etc/sysrepo/sysupgrade/ietf-system.startup" ]; then
+				# checked if the config file is based on the old YANG model terastream-software-hack
+				match=$(grep "terastream-software-hack" /etc/sysrepo/sysupgrade/ietf-system.startup)
+				if [ "$match" ]; then
+					sed -i '/<name>/d' /etc/sysrepo/sysupgrade/ietf-system.startup
+					sed -i -e 's/terastream-software-hack/terastream-software/g' /etc/sysrepo/sysupgrade/ietf-system.startup
+				fi
+				sysrepocfg --edit=/etc/sysrepo/sysupgrade/ietf-system.startup -f xml -d startup -m ietf-system
+				sysrepocfg -C startup -m ietf-system
+			fi
+			if [ -f "/etc/sysrepo/sysupgrade/ietf-keystore.startup" ]; then
+				sysrepocfg --edit=/etc/sysrepo/sysupgrade/ietf-keystore.startup -f xml -d startup -m ietf-keystore
+				sysrepocfg -C startup -m ietf-keystore
+			fi
+		fi
+	fi
+	match=$(sysrepoctl -l | grep "iana-crypt-hash ")
+	if [ ! "$match" ]; then
+		sysrepoctl -i /etc/sysrepo/yang/iana-crypt-hash@2014-08-06.yang
+	fi
+
+	match=$(sysrepoctl -l | grep "ietf-netconf-acm ")
+	if [ ! "$match" ]; then
+		sysrepoctl -i /etc/sysrepo/yang/ietf-netconf-acm@2018-02-14.yang
+	fi
+
+	match=$(sysrepoctl -l | grep "ietf-system ")
+	if [ ! "$match" ]; then
+		sysrepoctl -i /etc/sysrepo/yang/ietf-system@2014-08-06.yang
+		sysrepoctl -c ietf-system -e authentication
+		sysrepoctl -c ietf-system -e local-users
+	fi
+fi
+rm /etc/sysrepo/sysupgrade/ietf-system.startup
+rm /etc/sysrepo/sysupgrade/ietf-keystore.startup
+
+exit 0
