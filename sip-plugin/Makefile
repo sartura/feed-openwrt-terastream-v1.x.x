@@ -24,7 +24,7 @@ define Package/sip-plugin
   SECTION:=Terastream
   CATEGORY:=Terastream
   TITLE:=sip plugin
-  DEPENDS:= +libsysrepo-v1.x.x +libuci +sysrepoctl-v1.x.x +libubus +libubox +libblobmsg-json +voice-client
+  DEPENDS:= +sysrepo +libuci +sysrepoctl +libubus +libubox +libblobmsg-json +voice-client
 endef
 
 define Package/sip-plugin/description
