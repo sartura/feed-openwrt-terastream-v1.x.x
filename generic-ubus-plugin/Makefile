@@ -24,7 +24,7 @@ define Package/generic-ubus-plugin
   SECTION:=Terastream
   CATEGORY:=Terastream
   TITLE:=generic ubus plugin
-  DEPENDS:= +libsysrepo-v1.x.x +sysrepoctl-v1.x.x +libubus +libubox +libblobmsg-json +generic-ubus-yang-modules
+  DEPENDS:= +sysrepo +sysrepoctl +libubus +libubox +libblobmsg-json +generic-ubus-yang-modules
 endef
 
 define Package/generic-ubus-plugin/description
