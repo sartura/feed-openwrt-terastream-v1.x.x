@@ -23,7 +23,7 @@ define Package/generic-ubus-yang-modules
   SECTION:=Terastream
   CATEGORY:=Terastream
   TITLE:=generic ubus yang modules
-  DEPENDS:= +libsysrepo-v1.x.x +sysrepoctl-v1.x.x
+  DEPENDS:= +sysrepo +sysrepoctl
 endef
 
 define Package/generic-ubus-yang-modules/description
