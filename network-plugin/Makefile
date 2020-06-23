@@ -25,7 +25,7 @@ define Package/network-plugin
   SECTION:=Terastream
   CATEGORY:=Terastream
   TITLE:=network plugin
-  DEPENDS:= +libsysrepo-v1.x.x +libuci +sysrepoctl-v1.x.x +libubus +libblobmsg-json +libjson-c +sr-uci
+  DEPENDS:= +sysrepo +libuci +sysrepoctl +libubus +libblobmsg-json +libjson-c +sr-uci
 endef
 
 define Package/network-plugin/description
