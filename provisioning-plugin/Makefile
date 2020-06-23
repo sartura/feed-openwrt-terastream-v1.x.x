@@ -25,7 +25,7 @@ define Package/provisioning-plugin
   SECTION:=Terastream
   CATEGORY:=Terastream
   TITLE:=provisioning plugin
-  DEPENDS:= +libsysrepo-v1.x.x +libuci +sysrepoctl-v1.x.x +libubus +libubox +libblobmsg-json +sr-uci
+  DEPENDS:= +sysrepo +libuci +sysrepoctl +libubus +libubox +libblobmsg-json +sr-uci
 endef
 
 define Package/provisioning-plugin/description
