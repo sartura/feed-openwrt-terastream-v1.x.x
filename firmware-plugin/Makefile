@@ -24,7 +24,7 @@ define Package/firmware-plugin
   SECTION:=Terastream
   CATEGORY:=Terastream
   TITLE:=firmware plugin
-  DEPENDS:= +libsysrepo-v1.x.x +sysrepoctl-v1.x.x +sysrepocfg-v1.x.x +libopenssl +libcurl +libubox +libubus +libblobmsg-json +libjson-c
+  DEPENDS:= +sysrepo +sysrepoctl +sysrepocfg +libopenssl +libcurl +libubox +libubus +libblobmsg-json +libjson-c
 endef
 
 define Package/firmware-plugin/description
