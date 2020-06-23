@@ -24,7 +24,7 @@ define Package/wireless-plugin
   SECTION:=Terastream
   CATEGORY:=Terastream
   TITLE:=wireless plugin
-  DEPENDS:= +libsysrepo-v1.x.x +libuci +sysrepoctl-v1.x.x +libubus +libubox +libblobmsg-json
+  DEPENDS:= +sysrepo +libuci +sysrepoctl +libubus +libubox +libblobmsg-json
 endef
 
 define Package/wireless-plugin/description
