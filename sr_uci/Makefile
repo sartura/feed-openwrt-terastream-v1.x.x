@@ -24,7 +24,7 @@ define Package/sr-uci
   SECTION:=Terastream
   CATEGORY:=Terastream
   TITLE:=sr_uci library
-  DEPENDS:= +libsysrepo-v1.x.x +libuci +libubus +libubox +libblobmsg-json
+  DEPENDS:= +sysrepo +libuci +libubus +libubox +libblobmsg-json
 endef
 
 define Package/sr-uci/description
