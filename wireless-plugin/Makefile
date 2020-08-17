@@ -1,12 +1,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=wireless-plugin
-PKG_RELEASE:=3
-PKG_VERSION:=1.0.0
+PKG_RELEASE:=4
+PKG_VERSION:=2.0.0
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/sartura/wireless-plugin.git
-PKG_SOURCE_VERSION:=bd7fcb48d970b8660eabd3921481e40be39b1204
+PKG_SOURCE_VERSION:=fc2dc7692541b2a1223e7a2c27e00d5caba22e51
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.xz
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION)
 
@@ -20,23 +20,22 @@ PKG_BUILD_PARALLEL:=1
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 
-define Package/wireless-plugin
+define Package/$(PKG_NAME)
   SECTION:=Terastream
   CATEGORY:=Terastream
   TITLE:=wireless plugin
-  DEPENDS:= +sysrepo +libuci +sysrepoctl +libubus +libubox +libblobmsg-json
+  DEPENDS:= +sysrepo +libuci +sysrepoctl +libubus +libubox +libblobmsg-json +srpo
 endef
 
-define Package/wireless-plugin/description
+define Package/$(PKG_NAME)/description
 	Sysrepo wireless plugin
 endef
 
 CMAKE_OPTIONS:= \
 	-DCMAKE_INSTALL_PREFIX=/usr \
-	-DCMAKE_BUILD_TYPE=Debug \
 	-DPLUGIN:BOLL=TRUE
 
-define Package/wireless-plugin/install
+define Package/$(PKG_NAME)/install
 	$(INSTALL_DIR) $(1)/usr/lib/sysrepo/plugins/
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/lib/sysrepo-plugin-dt-wireless.so $(1)/usr/lib/sysrepo/plugins/
 
@@ -47,4 +46,4 @@ define Package/wireless-plugin/install
 	$(INSTALL_BIN) ./files/wireless.default $(1)/etc/uci-defaults/99_wireless
 endef
 
-$(eval $(call BuildPackage,wireless-plugin))
+$(eval $(call BuildPackage,$(PKG_NAME)))
