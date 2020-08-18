@@ -36,15 +36,16 @@ CMAKE_OPTIONS:= \
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/lib
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/libsr_uci.so $(1)/usr/lib/
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/libsrpo.so $(1)/usr/lib/
 
 	$(INSTALL_DIR) $(1)/usr/include
-	$(CP) $(PKG_INSTALL_DIR)/usr/include/sr_uci.h $(1)/usr/include
+	$(CP) $(PKG_INSTALL_DIR)/usr/include/srpo_ubus.h $(1)/usr/include
+	$(CP) $(PKG_INSTALL_DIR)/usr/include/srpo_uci.h $(1)/usr/include
 endef
 
 define Package/$(PKG_NAME)/install
 	$(INSTALL_DIR) $(1)/usr/lib
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/libsr_uci.so $(1)/usr/lib
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/libsrpo.so $(1)/usr/lib
 endef
 
 $(eval $(call BuildPackage,$(PKG_NAME)))
