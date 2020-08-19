@@ -6,7 +6,7 @@ PKG_VERSION:=2.0.0
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/sartura/dhcp.git
-PKG_SOURCE_VERSION:=23fa647edea773627c9259fcda0e0231009695e3
+PKG_SOURCE_VERSION:=2af7ad684aaf61ac037bbb43980cbf37b569d5da
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.xz
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION)
 
@@ -46,4 +46,4 @@ define Package/$(PKG_NAME)/install
 	$(INSTALL_BIN) ./files/dhcp.default $(1)/etc/uci-defaults/99_dhcp
 endef
 
-$(eval $(call BuildPackage,dhcp-plugin))
+$(eval $(call BuildPackage,$(PKG_NAME)))
