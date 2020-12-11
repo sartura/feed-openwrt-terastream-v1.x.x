@@ -6,7 +6,7 @@ PKG_VERSION:=1.0.0
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/sartura/srpo.git
-PKG_SOURCE_VERSION:=c7531f98b5d444cb9f7bb95be04453df2f6fef87
+PKG_SOURCE_VERSION:=93d0b7ba447564ddf6bae5f887cfee2dbd512af8
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.xz
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION)
 
@@ -24,7 +24,7 @@ define Package/$(PKG_NAME)
   SECTION:=Terastream
   CATEGORY:=Terastream
   TITLE:=srpo library
-  DEPENDS:= +sysrepo +libuci +libubus +libubox +libblobmsg-json
+  DEPENDS:= +sysrepo +libuci2 +libubus +libubox +libblobmsg-json
 endef
 
 define Package/$(PKG_NAME)/description
